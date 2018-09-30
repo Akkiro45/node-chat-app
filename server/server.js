@@ -16,7 +16,6 @@ const io = socketIO(server);
 app.use(express.static(publicPath));
 
 // SocketIO
-
 io.on('connection', (socket) => {
   console.log('New user connected.');
 
@@ -27,7 +26,7 @@ io.on('connection', (socket) => {
   socket.on('createMessage', (msg, callBack) => {
     console.log('createMessage', msg);
     io.emit('newMessage', generateMessage(msg.from, msg.text));
-    callBack('From server.');
+    callBack();
     // socket.broadcast.emit('newMessage', generateMessage(msg.from, msg.text));
   });
 
